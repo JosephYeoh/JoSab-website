@@ -9,7 +9,11 @@ import {
   CoolSabrinaHorizontal,
   NameButton,
   CoolUL,
-  CoolLI
+  CoolLI,
+  CoolSVGWrapper,
+  CoolRect,
+  NameIcon,
+  NameText
 } from './LandingPage.styles';
 
 const LandingPage = () => {
@@ -33,21 +37,25 @@ const LandingPage = () => {
             justify="center"
           >
             <CoolJosephHorizontal flex="1" align="flex-start" justify="flex-start">
-              <NameButton onClick={() => router.push('/joseph')} align="center">
-                <Icon name="chevron-left" size={'48px'} color={color.josephPrimary} />
-                <Text color={color.josephPrimary} fontWeight="bold" fontSize={[ 16, 28, 40 ]}>
+              <CoolHoverButton>
+                <NameButton onClick={() => router.push('/joseph')} align="center">
+                  <NameIcon name="chevron-left" size={'48px'} color={color.josephPrimary} />
+                  <NameText m={0} color={color.josephPrimary} fontWeight="bold" fontSize={[ 16, 28, 40 ]}>
                   Joseph
-                </Text>
-              </NameButton>
+                  </NameText>
+                </NameButton>
+              </CoolHoverButton>
             </CoolJosephHorizontal>
             <CoolAngledSlash minHeight={[ 408, 550, 690 ]} />
             <CoolSabrinaHorizontal flex="1" align="flex-end" justify="flex-end">
-              <NameButton onClick={() => router.push('/sabrina')} align="center">
-                <Text color={color.sabrinaPrimary} fontWeight="bold" fontSize={[ 16, 28, 40 ]}>
+              <CoolHoverButton isSabrina>
+                <NameButton onClick={() => router.push('/sabrina')} align="center">
+                  <NameText m={0} color={color.sabrinaPrimary} fontWeight="bold" fontSize={[ 16, 28, 40 ]}>
                   Sabrina
-                </Text>
-                <Icon name="chevron-right" size={'48px'} color={color.sabrinaPrimary} />
-              </NameButton>
+                  </NameText>
+                  <NameIcon name="chevron-right" size={'48px'} color={color.sabrinaPrimary} />
+                </NameButton>
+              </CoolHoverButton>
             </CoolSabrinaHorizontal>
           </Flex>
           <Flex height={[ 100, 150, 200 ]} />
@@ -86,6 +94,22 @@ const Background: React.FC<{}> = (props) => {
         {props.children}
       </Flex>
     </CoolBackground>
+  );
+};
+
+const CoolHoverButton:React.FC<{isSabrina?:boolean}> = props => {
+  const { isSabrina } = props;
+  return(
+    <CoolSVGWrapper
+      isSabrina={isSabrina} 
+      style={{
+        justifyContent: isSabrina? 'flex-end' : 'flex-start',
+      }}>
+      <svg style={{ position:'absolute' }} height="55" width="220" xmlns="http://www.w3.org/2000/svg">
+        <CoolRect isSabrina={isSabrina} className="shape" height="55" width="220" />
+      </svg>
+      {props.children}
+    </CoolSVGWrapper>
   );
 };
 

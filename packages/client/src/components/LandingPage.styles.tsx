@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { keyframes } from '@emotion/core';
-import { Flex } from '@chakra-ui/core';
+import { Flex, Icon, Text } from '@chakra-ui/core';
 import color from 'util/color';
 import Color from 'color';
 
@@ -28,6 +28,42 @@ const animate = keyframes`
 		border-radius: 50%;
 	}
 `;
+
+const draw = (isSabrina?:boolean) => keyframes`
+	0%{
+		stroke-dasharray: 55 490;
+		stroke-dashoffset: -220;
+    stroke-width: 6px;
+	}
+	30%{
+		stroke-dasharray: 550;
+    stroke-dashoffset: 0;
+    stroke-width: 4px;
+	}
+	35%{
+		fill: transparent;
+	}
+	100% {
+		fill: ${isSabrina ? color.sabrinaPrimary : color.josephPrimary};
+		stroke-dasharray: 550;
+    stroke-dashoffset: 0;
+    stroke-width: 4px;
+		stroke: transparent;
+  }
+`;
+
+const changeColor = (isSabrina?:boolean) => keyframes`
+	0%{
+		color: ${isSabrina ? color.sabrinaPrimary : color.josephPrimary};
+	}
+	30%{
+		color: ${isSabrina ? color.sabrinaPrimary : color.josephPrimary};
+	}
+	100%{
+		color: ${isSabrina? color.josephPrimary : color.sabrinaPrimary};
+	}
+`;
+
 
 /* background: linear-gradient(-45deg, #12c2e9, #c471ed, #f64f59); */
 export const CoolBackground = styled(Flex)`
@@ -59,11 +95,17 @@ export const CoolSabrinaHorizontal = styled(Flex)`
 `;
 
 export const NameButton = styled(Flex)`
-  transition: 0.3s ease;
   cursor: pointer;
-  &:hover {
-    transform: scale(1.2);
-  }
+`;
+
+export const NameIcon = styled(Icon)`
+	transition: 0.6s ease;
+	z-index: 100;
+`;
+
+export const NameText = styled(Text)`
+	transition: 0.6s ease;
+	z-index: 100;
 `;
 
 export const CoolUL = styled.ul`
@@ -93,3 +135,39 @@ export const CoolLI = styled.li<{ left: string; size: number; delay: string; dur
   animation-delay: ${(props) => props.delay};
   animation-duration: ${(props) => props.duration};
 `;
+
+
+export const CoolRect = styled.rect<{isSabrina?: boolean}>`
+	position: absolute;
+	fill: transparent;
+  stroke-dasharray: 55 490;
+	stroke-dashoffset: -220;
+  stroke-width: 6px;
+  stroke: ${props => props.isSabrina ? color.sabrinaPrimary : color.josephPrimary};
+	transform-origin: center center;
+	transform: ${props => props.isSabrina ? `rotate(180deg)` : 'rotate(0deg)'};
+`;
+
+
+export const CoolSVGWrapper = styled.div<{isSabrina?: boolean}>`
+	display: flex;
+	align-items: center;
+	cursor:pointer;
+	padding: 20px;
+  width: 320px;
+	&:hover{
+		${CoolRect}{
+			-webkit-animation: 0.8s ${props => draw(props.isSabrina)} ease forwards;
+			animation: 0.8s ${props => draw(props.isSabrina)} ease forwards;
+		}
+		${NameText} {
+			-webkit-animation: 0.8s ${props => changeColor(props.isSabrina)} ease forwards;
+			animation: 0.6s ${props => changeColor(props.isSabrina)} ease forwards;
+		}
+		${NameIcon} {
+			-webkit-animation: 0.8s ${props => changeColor(props.isSabrina)} ease forwards;
+			animation: 0.8s ${props => changeColor(props.isSabrina)} ease forwards;
+		}
+	}
+`;
+
