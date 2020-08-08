@@ -14,7 +14,13 @@
     "plugins": [
         "@typescript-eslint",
         "prettier"
-    ]
+    ],
+    "rules": {
+        "object-curly-spacing": ["warn","always"],
+        "array-bracket-spacing": ["warn", "always"],
+        "indent": ["warn", 2],
+        "semi": ["warn", "always"]
+    }
 }
 
 // ? airbnb rules i think should be disabled if we wanna follow airbnb style

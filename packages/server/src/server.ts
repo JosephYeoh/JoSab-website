@@ -1,7 +1,7 @@
-import { readFileSync } from 'fs';
+import {readFileSync} from 'fs';
 import glob from 'glob';
-import { ApolloServer, gql } from 'apollo-server';
-import { env } from './data/util/config';
+import {ApolloServer, gql} from 'apollo-server';
+import {env} from './data/util/config';
 
 // Setting process.env
 Object.keys(env).map((key) => {
@@ -18,8 +18,8 @@ const resolvers = glob
   .sync(`${__dirname}/**/*.resolver.ts`)
   .map((myPath: any) => require(myPath).Resolvers);
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({typeDefs, resolvers});
 
-server.listen().then(({ url }) => {
+server.listen().then(({url}) => {
   console.log(`🚀  Server ready at ${url}`);
 });

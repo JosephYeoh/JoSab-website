@@ -3,6 +3,8 @@ import { client } from 'lib/apollo';
 import { NextComponentType, NextPageContext } from 'next';
 import App from 'next/app';
 import React from 'react';
+import { ThemeProvider } from '@chakra-ui/core';
+import { customTheme } from 'lib/theme';
 
 interface PageBasedProps {
   Component: NextComponentType<NextPageContext, any, {}>;
@@ -14,7 +16,9 @@ const AppProviders: React.FC<PageBasedProps> = (props) => {
 
   return (
     <ApolloProvider client={client}>
-      <Component {...pageProps} />
+      <ThemeProvider theme={customTheme}>
+        <Component {...pageProps} />
+      </ThemeProvider>
     </ApolloProvider>
   );
 };

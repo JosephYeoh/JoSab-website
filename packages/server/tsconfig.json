@@ -4,7 +4,6 @@
 		"baseUrl": "src",
 		"paths": {
 			"@common/*": ["../../common/src/*"],
-			"src/*":["./src"]
 		},
 	}
 }
