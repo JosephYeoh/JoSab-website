@@ -29,7 +29,7 @@ const animate = keyframes`
 	}
 `;
 
-const draw = (isSabrina?:boolean) => keyframes`
+const draw = (isSabrina?: boolean) => keyframes`
 	0%{
 		stroke-dasharray: 55 490;
 		stroke-dashoffset: -220;
@@ -52,7 +52,7 @@ const draw = (isSabrina?:boolean) => keyframes`
   }
 `;
 
-const changeColor = (isSabrina?:boolean) => keyframes`
+const changeColor = (isSabrina?: boolean) => keyframes`
 	0%{
 		color: ${isSabrina ? color.sabrinaPrimary : color.josephPrimary};
 	}
@@ -60,10 +60,9 @@ const changeColor = (isSabrina?:boolean) => keyframes`
 		color: ${isSabrina ? color.sabrinaPrimary : color.josephPrimary};
 	}
 	100%{
-		color: ${isSabrina? color.josephPrimary : color.sabrinaPrimary};
+		color: ${isSabrina ? color.josephPrimary : color.sabrinaPrimary};
 	}
 `;
-
 
 /* background: linear-gradient(-45deg, #12c2e9, #c471ed, #f64f59); */
 export const CoolBackground = styled(Flex)`
@@ -99,13 +98,13 @@ export const NameButton = styled(Flex)`
 `;
 
 export const NameIcon = styled(Icon)`
-	transition: 0.6s ease;
-	z-index: 100;
+  transition: 0.6s ease;
+  z-index: 100;
 `;
 
 export const NameText = styled(Text)`
-	transition: 0.6s ease;
-	z-index: 100;
+  transition: 0.6s ease;
+  z-index: 100;
 `;
 
 export const CoolUL = styled.ul`
@@ -136,38 +135,35 @@ export const CoolLI = styled.li<{ left: string; size: number; delay: string; dur
   animation-duration: ${(props) => props.duration};
 `;
 
-
-export const CoolRect = styled.rect<{isSabrina?: boolean}>`
-	position: absolute;
-	fill: transparent;
+export const CoolRect = styled.rect<{ isSabrina?: boolean }>`
+  position: absolute;
+  fill: transparent;
   stroke-dasharray: 55 490;
-	stroke-dashoffset: -220;
+  stroke-dashoffset: -220;
   stroke-width: 6px;
-  stroke: ${props => props.isSabrina ? color.sabrinaPrimary : color.josephPrimary};
-	transform-origin: center center;
-	transform: ${props => props.isSabrina ? `rotate(180deg)` : 'rotate(0deg)'};
+  stroke: ${(props) => (props.isSabrina ? color.sabrinaPrimary : color.josephPrimary)};
+  transform-origin: center center;
+  transform: ${(props) => (props.isSabrina ? `rotate(180deg)` : 'rotate(0deg)')};
 `;
 
-
-export const CoolSVGWrapper = styled.div<{isSabrina?: boolean}>`
-	display: flex;
-	align-items: center;
-	cursor:pointer;
-	padding: 20px;
+export const CoolSVGWrapper = styled.div<{ isSabrina?: boolean }>`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 20px;
   width: 320px;
-	&:hover{
-		${CoolRect}{
-			-webkit-animation: 0.8s ${props => draw(props.isSabrina)} ease forwards;
-			animation: 0.8s ${props => draw(props.isSabrina)} ease forwards;
-		}
-		${NameText} {
-			-webkit-animation: 0.8s ${props => changeColor(props.isSabrina)} ease forwards;
-			animation: 0.6s ${props => changeColor(props.isSabrina)} ease forwards;
-		}
-		${NameIcon} {
-			-webkit-animation: 0.8s ${props => changeColor(props.isSabrina)} ease forwards;
-			animation: 0.8s ${props => changeColor(props.isSabrina)} ease forwards;
-		}
-	}
+  &:hover {
+    ${CoolRect} {
+      -webkit-animation: 0.8s ${(props) => draw(props.isSabrina)} ease forwards;
+      animation: 0.8s ${(props) => draw(props.isSabrina)} ease forwards;
+    }
+    ${NameText} {
+      -webkit-animation: 0.8s ${(props) => changeColor(props.isSabrina)} ease forwards;
+      animation: 0.6s ${(props) => changeColor(props.isSabrina)} ease forwards;
+    }
+    ${NameIcon} {
+      -webkit-animation: 0.8s ${(props) => changeColor(props.isSabrina)} ease forwards;
+      animation: 0.8s ${(props) => changeColor(props.isSabrina)} ease forwards;
+    }
+  }
 `;
-

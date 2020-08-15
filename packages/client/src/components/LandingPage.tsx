@@ -40,8 +40,13 @@ const LandingPage = () => {
               <CoolHoverButton>
                 <NameButton onClick={() => router.push('/joseph')} align="center">
                   <NameIcon name="chevron-left" size={'48px'} color={color.josephPrimary} />
-                  <NameText m={0} color={color.josephPrimary} fontWeight="bold" fontSize={[ 16, 28, 40 ]}>
-                  Joseph
+                  <NameText
+                    m={0}
+                    color={color.josephPrimary}
+                    fontWeight="bold"
+                    fontSize={[ 16, 28, 40 ]}
+                  >
+                    Joseph
                   </NameText>
                 </NameButton>
               </CoolHoverButton>
@@ -50,8 +55,13 @@ const LandingPage = () => {
             <CoolSabrinaHorizontal flex="1" align="flex-end" justify="flex-end">
               <CoolHoverButton isSabrina>
                 <NameButton onClick={() => router.push('/sabrina')} align="center">
-                  <NameText m={0} color={color.sabrinaPrimary} fontWeight="bold" fontSize={[ 16, 28, 40 ]}>
-                  Sabrina
+                  <NameText
+                    m={0}
+                    color={color.sabrinaPrimary}
+                    fontWeight="bold"
+                    fontSize={[ 16, 28, 40 ]}
+                  >
+                    Sabrina
                   </NameText>
                   <NameIcon name="chevron-right" size={'48px'} color={color.sabrinaPrimary} />
                 </NameButton>
@@ -97,15 +107,21 @@ const Background: React.FC<{}> = (props) => {
   );
 };
 
-const CoolHoverButton:React.FC<{isSabrina?:boolean}> = props => {
+const CoolHoverButton: React.FC<{ isSabrina?: boolean }> = (props) => {
   const { isSabrina } = props;
-  return(
+  return (
     <CoolSVGWrapper
-      isSabrina={isSabrina} 
+      isSabrina={isSabrina}
       style={{
-        justifyContent: isSabrina? 'flex-end' : 'flex-start',
-      }}>
-      <svg style={{ position:'absolute' }} height="55" width="220" xmlns="http://www.w3.org/2000/svg">
+        justifyContent: isSabrina ? 'flex-end' : 'flex-start'
+      }}
+    >
+      <svg
+        style={{ position: 'absolute' }}
+        height="55"
+        width="220"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <CoolRect isSabrina={isSabrina} className="shape" height="55" width="220" />
       </svg>
       {props.children}
